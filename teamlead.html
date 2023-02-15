@@ -298,7 +298,9 @@
         };
         const res = await axios.post(
           "https://doubtful-seal-veil.cyclic.app/api/register/check",
-          data
+          {
+            "email":getCookie("user")
+          }
         ); 
         if(res.status==200)
         {
@@ -306,6 +308,7 @@
         }
 
       }
+      window.onload=pre;
       const incorrect =document.getElementById("danger");
       incorrect.style.display="none";
       function getCookie(cname) {
