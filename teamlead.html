@@ -315,6 +315,8 @@
         const phone = document.getElementById("phone").value;
         const teamname = document.getElementById("team").value;
         const college = document.getElementById("college").value;
+        const linkedin = document.getElementById("linkedin").value;
+        const github = document.getElementById("git").value;
 
         const data = {
           name,
@@ -322,6 +324,8 @@
           phone,
           teamname,
           college,
+          linkedin,
+          github
         };
 
         axios.defaults.headers.common = {
