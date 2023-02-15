@@ -292,6 +292,7 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
+      axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
       async function pre(){
          axios.defaults.headers.common = {
           Authorization: `bearer ${getCookie("token")}`,

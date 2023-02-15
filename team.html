@@ -241,6 +241,8 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.getElementById("danger").style.display = "none";
+    
+    axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
      function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
