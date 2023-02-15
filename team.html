@@ -69,6 +69,7 @@
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="#about">Register Now</a></li>
+          <li><a class="getstarted scrollto" href="#about">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -125,7 +126,7 @@
                 </div>
                 <div class="col-md-12">
                     <input
-                      type="url"
+                      type="text"
                       name="linkedin"
                       id="linkedin"
                       class="form-control"
@@ -136,7 +137,7 @@
 
                   <div class="col-md-12">
                     <input
-                      type="url"
+                      type="text"
                       name="github id"
                       id="git"
                       class="form-control"
@@ -239,7 +240,6 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    
      function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -255,14 +255,6 @@
         }
         return "";
       }
-      async function pre() {
-          const res = await axios.post('https://doubtful-seal-veil.cyclic.app/api/register/check', { "email": getCookie("user") })
-          if (res.status == 290) {
-            window.location.href = "./login.html";
-          }
-        }
-
-        window.onload = pre;
       const form = document.getElementById("form");
      
       form.addEventListener('submit',async(e)=>{
