@@ -162,14 +162,11 @@
                   </div>
 
                   <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">
-                      Your message has been sent. Thank you!
-                    </div>
+                   
 
                     <button type="submit">Submit</button>
                   </div>
+                  <div id="predanger">Your Idea submitted successfully</div>
                   <div id="danger">Your Idea submitted successfully</div>
                 </div>
               </form>
@@ -242,6 +239,7 @@
     <script src="assets/js/main.js"></script>
     <script>
        document.getElementById("danger").style.display = "none";
+      document.getElementById("predanger").style.display = "none";
       function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -295,7 +293,8 @@
             window.location.href = "./login.html";
           }
         } else if (newres.status == 230) {
-          alert("You have already submitted your idea");
+          document.getElementById("predanger").style.display = "block";
+          //alert("You have already submitted your idea");
         } else {
           window.location.href = "./login.html";
         }
