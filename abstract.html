@@ -91,7 +91,7 @@
               <a class="getstarted scrollto" href="#about">Register Now</a>
             </li>
             <li>
-              <a class="getstarted scrollto" href="#about">Logout</a>
+              <a class="getstarted scrollto" href="#about" id="logout">Logout</a>
             </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
@@ -258,7 +258,17 @@
         }
         return "";
       }
-      const form = document.getElementById("form");
+     
+      
+        const form = document.getElementById("form");
+          function delete_cookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          }
+          document.getElementById("logout").addEventListener("click", () => {
+            delete_cookie("token");
+            delete_cookie("user");
+            window.location.href = "./login.html";
+          })
      
       form.addEventListener("submit", async (e) => {
         e.preventDefault();

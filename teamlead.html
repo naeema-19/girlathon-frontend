@@ -91,7 +91,7 @@
               <a class="getstarted scrollto" href="#about">Register Now</a>
             </li>
             <li>
-              <a class="getstarted scrollto" href="#about">Logout</a>
+              <a class="getstarted scrollto" href="#about" id="logout">Logout</a>
             </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
@@ -292,6 +292,20 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
+      async function pre(){
+         axios.defaults.headers.common = {
+          Authorization: `bearer ${getCookie("token")}`,
+        };
+        const res = await axios.post(
+          "https://doubtful-seal-veil.cyclic.app/api/register/check",
+          data
+        ); 
+        if(res.status==200)
+        {
+          window.location.href="./teamsuccess.html";
+        }
+
+      }
       const incorrect =document.getElementById("danger");
       incorrect.style.display="none";
       function getCookie(cname) {
@@ -309,6 +323,18 @@
         }
         return "";
       }
+      function delete_cookie(name) {
+          document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+       
+          function delete_cookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          }
+          document.getElementById("logout").addEventListener("click", () => {
+            delete_cookie("token");
+            delete_cookie("user");
+            window.location.href = "./login.html";
+          })
 
       const form = document.getElementById("form");
       form.addEventListener("submit", async (e) => {

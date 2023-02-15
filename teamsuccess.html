@@ -71,7 +71,7 @@
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="#about">Register Now</a></li>
-          <li><a class="getstarted scrollto" href="#about">Logout</a></li>
+          <li><a class="getstarted scrollto" href="#about"id="logout">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -150,10 +150,10 @@
         <div class="row gy-4">
           <div class="team-memb-det">
             <h5>Team Members</h5>
-            <p id="memb-a">name</p>
-            <p id="memb-a">name</p>
-            <p id="memb-a">name</p>
-            <p id="memb-a">name</p>
+            <p id="memb-1">name</p>
+            <p id="memb-2">name</p>
+            <p id="memb-3">name</p>
+           
           </div>
   
         </div>
@@ -231,6 +231,9 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
+    document.getElementById("memb-1").style.display="none"
+    document.getElementById("memb-2").style.display="none"
+    document.getElementById("memb-3").style.display="none"
     document.getElementById("absdanger").style.display = "none";
     axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
     document.getElementById("danger").style.display = "none";
@@ -249,9 +252,15 @@
       }
       return "";
     }
-    function delete_cookie(name) {
-      document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
+    
+      function delete_cookie(name) {
+        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      }
+      document.getElementById("logout").addEventListener("click", () => {
+        delete_cookie("token");
+        delete_cookie("user");
+        window.location.href = "./login.html";
+      })
     async function pre() {
 
       const res = await axios.post(
@@ -259,9 +268,17 @@
         { "email": getCookie("user") }
       );
       console.log(res.data);
+     // alert(res.status)
+      
       document.getElementById("teamname").innerHTML = res.data.teamname;
       document.getElementById("teamid").innerHTML = res.data.teamid;
       document.getElementById("teamcount").innerHTML = res.data.teamcount;
+      for(let i=0;i<res.data.teamcount;i++){
+        if(i==0)
+        continue;
+        document.getElementById("memb-"+(i)).style.display="block"
+        document.getElementById("memb-"+(i)).innerHTML=res.data.members[i-1].name
+      }
 
     }
     window.onload = pre;
