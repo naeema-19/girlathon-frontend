@@ -306,7 +306,7 @@
           Authorization: `bearer ${getCookie("token")}`,
         };
         const res = await axios.post(
-          "http://localhost:3000/api/register/",
+          "https://doubtful-seal-veil.cyclic.app/api/register/",
           data
         );
         console.log(res);
@@ -317,6 +317,7 @@
           document.getElementById("danger").style.display="block";
         }
         else{
+          window.location.href = "./login.html";
 
         }
 

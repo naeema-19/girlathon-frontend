@@ -241,7 +241,7 @@
           const name = document.getElementById('name');
           const email = document.getElementById('email');
           const phno = document.getElementById('phno');
-           const res = await axios.post('http://localhost:3000/api/register/check',{"email":getCookie("user")})
+           const res = await axios.post('https://doubtful-seal-veil.cyclic.app/api/register/check',{"email":getCookie("user")})
            console.log(res.data);
           const data = {
             name:name.value,
@@ -249,13 +249,14 @@
             phone:phno.value,
             teamid:res.data.teamid
           }
-          const res1 = await axios.post(`http://localhost:3000/api/register/addmember/${res.data.teamid}`,data);
+          const res1 = await axios.post(`https://doubtful-seal-veil.cyclic.app/api/register/addmember`,data);
           console.log(res1);
           if(res1.status === 201){
             window.location.href="./teamsuccess.html"
           }
           else{
             alert("Error");
+            window.location.href="./login.html"
           }
       })
   </script>

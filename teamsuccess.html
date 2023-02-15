@@ -132,6 +132,7 @@
                   <button type="submit1">Add Member</button>
                   <button type="submit2">Abstract</button>
                   <div id="danger"> Team is full !!!!</div>
+                  <div id="absdanger"> You already submitted your idea !!!!</div>
       
                 </div>
 
@@ -202,6 +203,8 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
+    document.getElementById("absdanger").style.display="none";
+     axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
     document.getElementById("danger").style.display="none";
     function getCookie(cname) {
         let name = cname + "=";
@@ -219,9 +222,9 @@
         return "";
       }
     async function pre(){
-      axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
+     
           const res= await axios.post(
-            "http://localhost:3000/api/register/check",
+            "https://doubtful-seal-veil.cyclic.app/api/register/check",
             {"email":getCookie("user")}
           );
           console.log(res.data);
@@ -234,7 +237,7 @@
     document.querySelector("button[type=submit1]").addEventListener("click",async (e)=>{
       e.preventDefault();
       const res= await axios.post(
-            "http://localhost:3000/api/register/check",
+            "https://doubtful-seal-veil.cyclic.app/api/register/check",
             {"email":getCookie("user")}
           );
       if(res.data.teamcount<4){
@@ -248,7 +251,22 @@
 
     document.querySelector("button[type=submit2]").addEventListener("click",async (e)=>{
       e.preventDefault();
-     window.location.href="./abstract.html";
+      const res= await axios.post(
+            "https://doubtful-seal-veil.cyclic.app/api/register/check",
+            {"email":getCookie("user")}
+          );
+         const teamid=res.data.teamid;
+          const newres =await axios.post("https://doubtful-seal-veil.cyclic.app/api/abstract/issubmitted",{"teamid":teamid})
+          if(newres.status==230){
+            document.getElementById("absdanger").style.display="block";
+          }
+          else if(newres.status==200){
+            window.location.href="./abstract.html"; 
+          }
+          else{
+            window.location.href="./login.html";
+          }
+        
   
     })
   </script>
