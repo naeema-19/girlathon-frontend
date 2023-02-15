@@ -292,6 +292,21 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
+      function getCookie(cname) {
+          let name = cname + "=";
+          let decodedCookie = decodeURIComponent(document.cookie);
+          let ca = decodedCookie.split(";");
+          for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == " ") {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
       axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
       async function pre(){
          axios.defaults.headers.common = {
@@ -303,6 +318,7 @@
             "email":getCookie("user")
           }
         ); 
+        
         console.log(res);
         if(res.status==200)
         {
@@ -317,21 +333,7 @@
       window.onload=pre;
       const incorrect =document.getElementById("danger");
       incorrect.style.display="none";
-      function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
+      
       function delete_cookie(name) {
           document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }

@@ -243,7 +243,7 @@
     <script>
        document.getElementById("danger").style.display = "none";
       document.getElementById("predanger").style.display = "none";
-      axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
+     
       function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -259,6 +259,7 @@
         }
         return "";
       }
+       axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
        function delete_cookie(name) {
           document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
