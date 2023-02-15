@@ -256,6 +256,14 @@
         return "";
       }
       const form = document.getElementById("form");
+      async function pre() {
+          const res = await axios.post('https://doubtful-seal-veil.cyclic.app/api/register/check', { "email": getCookie("user") })
+          if (res.status == 290) {
+            window.location.href = "./login.html";
+          }
+        }
+
+        window.onload = pre;
      
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
