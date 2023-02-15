@@ -275,11 +275,14 @@
             );
 
             console.log(res);
-             if (res.status == 290) {
-              window.location.href = "./login.html";
-            } else {
+            if (res.status == 200) {
+             
+           }
+           else if (res.status == 290) {
+             window.location.href = "./login.html";
+           } else {
 
-            }
+           }
 
           }
           window.onload = pre;
