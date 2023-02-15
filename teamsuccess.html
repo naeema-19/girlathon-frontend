@@ -269,6 +269,9 @@
       );
       console.log(res.data);
      // alert(res.status)
+     if (res.status == 290) {
+        window.location.href = "./login.html";
+      }
       
       document.getElementById("teamname").innerHTML = res.data.teamname;
       document.getElementById("teamid").innerHTML = res.data.teamid;

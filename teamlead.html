@@ -302,9 +302,14 @@
             "email":getCookie("user")
           }
         ); 
+        console.log(res);
         if(res.status==200)
         {
           window.location.href="./teamsuccess.html";
+        }
+        else if(res.status==290)
+        {
+          window.location.href="./login.html";
         }
 
       }
