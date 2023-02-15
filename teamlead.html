@@ -310,7 +310,7 @@
       axios.defaults.headers.common = { 'Authorization': `bearer ${getCookie("token")}` }
       async function pre(){
          axios.defaults.headers.common = {
-          Authorization: `bearer ${getCookie("token")}`,
+          'Authorization': `bearer ${getCookie("token")}`,
         };
         const res = await axios.post(
           "https://doubtful-seal-veil.cyclic.app/api/register/check",
@@ -327,6 +327,8 @@
         else if(res.status==290)
         {
           window.location.href="./login.html";
+        }else{
+          
         }
 
       }
