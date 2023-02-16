@@ -1014,9 +1014,9 @@ section {
 
 .pricing ul {
   padding: 0;
-  list-style: none;
+  list-style-type: decimal;
   color: #444444;
-  text-align: center;
+  text-align: left;
   line-height: 26px;
   font-size: 16px;
   margin-bottom: 25px;
